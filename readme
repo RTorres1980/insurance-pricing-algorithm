@@ -1,0 +1,25 @@
+# Insurance Pricing Algorithm
+
+## Overview
+This project demonstrates a **pricing algorithm for insurance products** such as life, health, or annuities. It simulates risk-based pricing by analyzing client demographics, policy details, and risk scores to calculate customized premiums.
+
+The project is designed to showcase the combination of **financial expertise** and **data analysis skills**, including ETL processes, data cleaning, and automation.
+
+---
+
+## Features
+- **Data Processing:** Load, clean, and validate client and policy data.
+- **Pricing Model:** Risk-adjusted premium calculation based on age and risk score.
+- **Modular Design:** Separate modules for data utilities and pricing logic.
+- **Output:** Generates a CSV with calculated premiums for all client-policy combinations.
+
+---
+
+## Tech Stack
+- **Python 3**
+- **Pandas** (data manipulation)
+- **NumPy** (numerical calculations)
+
+---
+
+## Folder Structure
