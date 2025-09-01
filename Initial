@@ -1,0 +1,101 @@
+import os
+import csv
+import shutil
+
+# Define folder structure
+project_folder = 'insurance-pricing-algorithm'
+data_folder = os.path.join(project_folder, 'data')
+src_folder = os.path.join(project_folder, 'src')
+os.makedirs(data_folder, exist_ok=True)
+os.makedirs(src_folder, exist_ok=True)
+
+# Create clients.csv
+with open(os.path.join(data_folder, 'clients.csv'), 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['client_id','age','risk_score'])
+    writer.writerow([1,35,2])
+    writer.writerow([2,50,4])
+    writer.writerow([3,28,1])
+
+# Create policies.csv
+with open(os.path.join(data_folder, 'policies.csv'), 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['policy_id','base_premium'])
+    writer.writerow([101,500])
+    writer.writerow([102,1000])
+    writer.writerow([103,750])
+
+# Create utils.py
+with open(os.path.join(src_folder, 'utils.py'), 'w') as f:
+    f.write("""import pandas as pd
+
+def load_csv(file_path):
+    return pd.read_csv(file_path)
+
+def clean_data(df):
+    df = df.dropna()
+    return df
+""")
+
+# Create pricing_model.py
+with open(os.path.join(src_folder, 'pricing_model.py'), 'w') as f:
+    f.write("""import pandas as pd
+
+def calculate_premium(client, policy):
+    base = policy['base_premium']
+    age_factor = 1 + (client['age'] - 30) * 0.01
+    risk_factor = 1 + client['risk_score'] * 0.05
+    return round(base * age_factor * risk_factor, 2)
+
+def run_pricing(clients_df, policies_df):
+    output = []
+    for _, client in clients_df.iterrows():
+        for _, policy in policies_df.iterrows():
+            premium = calculate_premium(client, policy)
+            output.append({
+                'client_id': client['client_id'],
+                'policy_id': policy['policy_id'],
+                'premium': premium
+            })
+    return pd.DataFrame(output)
+""")
+
+# Create run_pricing.py
+with open(os.path.join(project_folder, 'run_pricing.py'), 'w') as f:
+    f.write("""import pandas as pd
+from src.utils import load_csv, clean_data
+from src.pricing_model import run_pricing
+
+clients = clean_data(load_csv('data/clients.csv'))
+policies = clean_data(load_csv('data/policies.csv'))
+
+output = run_pricing(clients, policies)
+output.to_csv('output_premiums.csv', index=False)
+print('Premiums calculated and saved to output_premiums.csv')
+""")
+
+# Create requirements.txt
+with open(os.path.join(project_folder, 'requirements.txt'), 'w') as f:
+    f.write("pandas\nnumpy")
+
+# Create README.md
+with open(os.path.join(project_folder, 'README.md'), 'w') as f:
+    f.write("""# Insurance Pricing Algorithm
+
+## Overview
+This project demonstrates an insurance pricing algorithm designed for life, health, or annuity products. It simulates risk-based pricing by analyzing client demographics, policy characteristics, and historical claim data.
+
+## Setup & Usage
+1. Clone or download the repository.
+2. Install dependencies: pip install -r requirements.txt
+3. Run the pricing algorithm: python run_pricing.py
+4. Check output_premiums.csv for the calculated premiums.
+
+## Author
+Robert Torres  
+[LinkedIn](https://www.linkedin.com/in/RTorres1980) | [GitHub](https://github.com/RTorres1980)
+""")
+
+# Zip the folder
+shutil.make_archive(project_folder, 'zip', project_folder)
+print(f"Project zipped as {project_folder}.zip")
