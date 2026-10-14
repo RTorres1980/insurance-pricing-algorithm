@@ -1,5 +1,7 @@
 # Insurance Pricing Algorithm
 
+![CI](https://github.com/RTorres1980/insurance-pricing-algorithm/actions/workflows/ci.yml/badge.svg)
+
 A transparent rating engine for level term life insurance. It prices each applicant from expected claims, applies risk-class, tobacco and size adjustments, enforces basic underwriting limits, and quotes annual and modal premiums.
 
 ## How a premium is built
