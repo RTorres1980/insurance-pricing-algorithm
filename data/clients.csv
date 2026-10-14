@@ -1,0 +1,25 @@
+client_id,age,risk_class,tobacco,face_amount
+C001,55,Standard Plus,False,2000000
+C002,62,Table 4,False,1000000
+C003,23,Table 2,True,750000
+C004,62,Standard,False,25000
+C005,45,Preferred,False,2000000
+C006,47,Standard Plus,False,250000
+C007,53,Standard,False,500000
+C008,78,Preferred Plus,False,750000
+C009,70,Standard Plus,False,750000
+C010,24,Preferred,False,100000
+C011,35,Table 2,False,100000
+C012,41,Preferred Plus,False,1000000
+C013,50,Standard,True,2000000
+C014,42,Table 2,False,750000
+C015,28,Preferred,True,2000000
+C016,24,Table 2,False,500000
+C017,22,Table 2,False,250000
+C018,24,Preferred Plus,False,1000000
+C019,29,Standard,False,100000
+C020,71,Preferred Plus,False,250000
+C021,31,Standard Plus,False,250000
+C022,54,Standard Plus,False,500000
+C023,59,Preferred,False,100000
+C024,33,Preferred,False,1000000
